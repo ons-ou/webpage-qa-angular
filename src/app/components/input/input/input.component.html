@@ -1,0 +1,14 @@
+<div class="container" [formGroup]="form">
+  <mat-form-field appearance="outline">
+    <mat-label>URL</mat-label>
+    <input matInput formControlName="url" placeholder="Placeholder">
+    @if(form.get('url')?.invalid && form.get('url')?.touched){
+    <mat-error>
+      Must be a valid URL
+    </mat-error> }   
+  </mat-form-field>
+
+  <button mat-stroked-button (click)="getFeedback()" [disabled]="!form.get('url')?.valid">
+    Get Feedback
+  </button>
+</div>

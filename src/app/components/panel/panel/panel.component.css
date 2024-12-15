@@ -1,0 +1,22 @@
+.panel-content {
+    padding: 10px;
+  }
+  
+  .panel-content h4 {
+    margin-top: 0;
+    font-weight: bold;
+  }
+  
+  .panel-content p {
+    margin-bottom: 10px;
+  }
+  
+  .panel-content ul {
+    list-style-type: disc;
+    margin-left: 20px;
+  }
+  
+  mat-panel-description {
+    font-size: 14px;
+  }
+  

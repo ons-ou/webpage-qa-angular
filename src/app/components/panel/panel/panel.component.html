@@ -1,0 +1,26 @@
+<mat-expansion-panel>
+  <mat-expansion-panel-header>
+    <mat-panel-title>
+      {{ title }}
+    </mat-panel-title>
+    <mat-panel-description>
+      Score: {{ score }}
+    </mat-panel-description>
+  </mat-expansion-panel-header>
+
+  <div class="panel-content">
+    <div *ngIf="feedback && feedback.length">
+      <h4>Feedback:</h4>
+      <p *ngFor="let feedbackItem of feedback">{{ feedbackItem }}</p>
+    </div>
+
+    <div *ngIf="issues && issues.length">
+      <h4>Issues:</h4>
+      <ul>
+        <li *ngFor="let issue of issues">
+          <span>{{ issue }}</span>
+        </li>
+      </ul>
+    </div>
+  </div>
+</mat-expansion-panel>
