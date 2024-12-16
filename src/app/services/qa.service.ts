@@ -88,6 +88,20 @@ export class QaService {
       });
     }
   
+    if (data.InformationArchitectureEvaluation) {
+      panels.push({
+        title: "Information Architecture Evaluation",
+        website_type: data.InformationArchitectureEvaluation.website_type,
+        score: data.InformationArchitectureEvaluation.usability_score,
+        feedback: data.InformationArchitectureEvaluation.feedback,
+        issues: data.InformationArchitectureEvaluation.element_evaluations?.map(
+          (element: any) => {
+            return `${element.element}: Found = ${element.found}, Usability = ${element.usability || "N/A"}`;
+          }
+        ) || []        
+      });
+    }
+
     return panels;
   }
 }
