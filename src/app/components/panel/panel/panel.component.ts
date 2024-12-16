@@ -27,4 +27,14 @@ export class PanelComponent {
 
   @Input()
   feedback: string[] = []
+
+  getPanelClass(score: number): string {
+    if (score === 1) {
+      return 'panel-success';
+    } else if (score >= 0.5) {
+      return 'panel-warning';
+    } else {
+      return 'panel-error';
+    }
+  }
 }

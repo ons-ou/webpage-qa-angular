@@ -32,12 +32,12 @@ export class QaService {
   
   private processFeedbackData(data: any): any {
     const panels = [];
-
+  
     if (data.HtmlEvaluation) {
       panels.push({
         title: "HTML Evaluation",
         score: data.HtmlEvaluation.global_score,
-        feedback: [data.HtmlEvaluation.feedback],
+        feedback: data.HtmlEvaluation.feedback,
         issues:
           data.HtmlEvaluation.issues?.map(
             (issue: any) =>
@@ -48,11 +48,26 @@ export class QaService {
       });
     }
 
+    if (data.FunctionalTestingEvaluation) {
+      panels.push({
+        title: "Functional Testing",
+        score: data.FunctionalTestingEvaluation.global_score,
+        feedback: data.FunctionalTestingEvaluation.feedback,
+        issues:
+          data.FunctionalTestingEvaluation.issues?.map(
+            (issue: any) =>
+              `Issue Type: ${issue.issue_type}, Affected Items: ${issue.items?.join(
+                ", "
+              )}, Suggestion: ${issue.suggestion}`
+          ) || [],
+      });
+    }
+
     if (data.AccessibilityEvaluation) {
       panels.push({
         title: "Accessibility Evaluation",
         score: data.AccessibilityEvaluation.global_score,
-        feedback: [data.AccessibilityEvaluation.feedback],
+        feedback: data.AccessibilityEvaluation.feedback,
         issues:
           data.AccessibilityEvaluation.issues?.map(
             (issue: any) =>
@@ -60,19 +75,19 @@ export class QaService {
           ) || [],
       });
     }
-
+  
     if (data.TextEvaluation) {
       panels.push({
         title: "Text Evaluation",
-        score: data.TextEvaluation.grammar_and_spelling_issues?.score,
+        score: data.TextEvaluation.score,
         feedback: data.TextEvaluation.feedback,
         issues: [
-          data.TextEvaluation.grammar_and_spelling_issues?.details,
+          ...data.TextEvaluation.grammar_and_spelling_issues,
           data.TextEvaluation.text_structure_evaluation,
         ].filter(Boolean),
       });
     }
-
+  
     return panels;
   }
 }
