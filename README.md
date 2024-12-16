@@ -95,28 +95,5 @@ http://localhost:4200
 - Manages the connection to the FastAPI backend via WebSocket.
 - Sends the URL to the backend and listens for responses.
 
-Example code snippet for the WebSocket service:
-
-```typescript
-import { Injectable } from '@angular/core';
-import { WebSocketSubject } from 'rxjs/webSocket';
-
-@Injectable({
-  providedIn: 'root'
-})
-export class WebSocketService {
-  private WEBSOCKET_URL = 'ws://127.0.0.1:8000/ws';
-  private socket$ = new WebSocketSubject(this.WEBSOCKET_URL);
-
-  sendMessage(data: any): void {
-    this.socket$.next(data);
-  }
-
-  getMessages() {
-    return this.socket$;
-  }
-}
-```
-
 #### 3. **Feedback Display**
 - Dynamically updates the feedback section based on the response from the backend.
